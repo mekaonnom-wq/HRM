@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เมฆา อ่อนน้อม (Meka Onnom) - HR Professional Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        neonPink: '#ff2a85',
+                        neonCyan: '#00f3ff',
+                        neonPurple: '#b026ff',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts (Prompt & Inter) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Prompt', 'Inter', sans-serif;
+        }
+        /* Neon Glow Effects */
+        .neon-text-cyan {
+            text-shadow: 0 0 8px rgba(0, 243, 255, 0.7), 0 0 20px rgba(0, 243, 255, 0.4);
+        }
+        .neon-text-pink {
+            text-shadow: 0 0 8px rgba(255, 42, 133, 0.7), 0 0 20px rgba(255, 42, 133, 0.4);
+        }
+        .neon-box-cyan {
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.25), inset 0 0 8px rgba(0, 243, 255, 0.1);
+        }
+        .neon-box-cyan:hover {
+            box-shadow: 0 0 25px rgba(0, 243, 255, 0.5), inset 0 0 12px rgba(0, 243, 255, 0.2);
+        }
+        .neon-box-pink {
+            box-shadow: 0 0 15px rgba(255, 42, 133, 0.25), inset 0 0 8px rgba(255, 42, 133, 0.1);
+        }
+        .neon-box-pink:hover {
+            box-shadow: 0 0 25px rgba(255, 42, 133, 0.5), inset 0 0 12px rgba(255, 42, 133, 0.2);
+        }
+        .neon-border-gradient {
+            position: relative;
+            background: linear-gradient(145deg, rgba(15, 23, 42, 0.9), rgba(10, 14, 26, 0.95));
+        }
+        html:not(.dark) .neon-border-gradient {
+            background: rgba(255, 255, 255, 0.9);
+        }
+        html:not(.dark) .neon-text-cyan {
+            text-shadow: 0 0 6px rgba(6, 182, 212, 0.35);
+        }
+        html:not(.dark) .neon-text-pink {
+            text-shadow: 0 0 6px rgba(236, 72, 153, 0.35);
+        }
+
+        /* Scatter & Assemble Text Effect */
+        .scatter-char {
+            display: inline-block;
+            will-change: transform, opacity, filter;
+            transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1),
+                        opacity 0.9s ease-out,
+                        filter 1.1s ease-out;
+        }
+        .scatter-char.assembled {
+            transform: translate3d(0, 0, 0) rotate(0deg) scale(1) !important;
+            opacity: 1 !important;
+            filter: blur(0px) !important;
+        }
+        /* Interactive Hover Bounce after assembled */
+        .scatter-container.ready .scatter-char:hover {
+            transform: translateY(-6px) scale(1.12) !important;
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* Scroll Reveal Animation */
+        .reveal-item {
+            opacity: 0;
+            transform: translateY(30px) scale(0.97);
+            transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+                        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal-item.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-[#070913] dark:text-slate-100 transition-colors duration-300 selection:bg-neonPink selection:text-white">
+
+    <!-- 1. Header / Navbar -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-[#070913]/85 backdrop-blur-md border-b border-slate-200 dark:border-cyan-500/30 dark:shadow-[0_4px_20px_rgba(0,243,255,0.1)]">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <a href="#" class="text-xl font-bold tracking-wider flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-neonCyan shadow-[0_0_10px_#00f3ff] animate-pulse"></span>
+                <span class="bg-gradient-to-r from-cyan-500 via-fuchsia-500 to-pink-500 dark:from-neonCyan dark:via-neonPurple dark:to-neonPink bg-clip-text text-transparent">
+                    เมฆา (MEKA)
+                </span>
+            </a>
+            
+            <!-- Desktop Menu -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                <a href="#about" class="hover:text-cyan-600 dark:hover:text-neonCyan dark:hover:drop-shadow-[0_0_8px_rgba(0,243,255,0.8)] transition-all">About</a>
+                <a href="#skills" class="hover:text-pink-600 dark:hover:text-neonPink dark:hover:drop-shadow-[0_0_8px_rgba(255,42,133,0.8)] transition-all">Skills</a>
+                <a href="#projects" class="hover:text-cyan-600 dark:hover:text-neonCyan dark:hover:drop-shadow-[0_0_8px_rgba(0,243,255,0.8)] transition-all">Projects</a>
+                <a href="#experience" class="hover:text-pink-600 dark:hover:text-neonPink dark:hover:drop-shadow-[0_0_8px_rgba(255,42,133,0.8)] transition-all">Experience</a>
+                <a href="#certifications" class="hover:text-cyan-600 dark:hover:text-neonCyan dark:hover:drop-shadow-[0_0_8px_rgba(0,243,255,0.8)] transition-all">Certifications</a>
+                <a href="#contact" class="hover:text-pink-600 dark:hover:text-neonPink dark:hover:drop-shadow-[0_0_8px_rgba(255,42,133,0.8)] transition-all">Contact</a>
+            </nav>
+
+            <div class="flex items-center space-x-4">
+                <!-- Replay Scatter Effect Button -->
+                <button id="replay-scatter" title="เล่นเอฟเฟกต์กระจายตัวอักษรอีกครั้ง" class="p-2 rounded-full border border-slate-200 dark:border-pink-500/40 hover:bg-slate-100 dark:hover:bg-pink-950/50 text-pink-600 dark:text-neonPink transition-all text-sm flex items-center gap-1.5 px-3">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    <span class="hidden sm:inline text-xs font-medium">Replay</span>
+                </button>
+
+                <!-- Dark/Light Mode Toggle -->
+                <button id="theme-toggle" aria-label="Toggle dark mode" class="p-2 rounded-full border border-slate-200 dark:border-cyan-500/40 hover:bg-slate-100 dark:hover:bg-cyan-950/50 dark:text-neonCyan transition-all">
+                    <i id="theme-icon" class="fa-solid fa-sun text-lg"></i>
+                </button>
+
+                <!-- Mobile Menu Button -->
+                <button id="menu-btn" aria-label="Toggle mobile menu" class="md:hidden p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 dark:text-neonCyan">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-[#0b0f1e] border-b border-slate-200 dark:border-cyan-500/30 px-4 pt-2 pb-4 space-y-2">
+            <a href="#about" class="block py-2 px-3 rounded-lg hover:bg-slate-100 dark:hover:bg-cyan-950/40 dark:hover:text-neonCyan">About</a>
+            <a href="#skills" class="block py-2 px-3 rounded-lg hover:bg-slate-100 dark:hover:bg-pink-950/40 dark:hover:text-neonPink">Skills</a>
+            <a href="#projects" class="block py-2 px-3 rounded-lg hover:bg-slate-100 dark:hover:bg-cyan-950/40 dark:hover:text-neonCyan">Projects</a>
+            <a href="#experience" class="block py-2 px-3 rounded-lg hover:bg-slate-100 dark:hover:bg-pink-950/40 dark:hover:text-neonPink">Experience</a>
+            <a href="#certifications" class="block py-2 px-3 rounded-lg hover:bg-slate-100 dark:hover:bg-cyan-950/40 dark:hover:text-neonCyan">Certifications</a>
+            <a href="#contact" class="block py-2 px-3 rounded-lg hover:bg-slate-100 dark:hover:bg-pink-950/40 dark:hover:text-neonPink">Contact</a>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="pt-16 relative overflow-hidden">
+        <!-- Ambient Neon Glow Blobs (Dark Mode) -->
+        <div class="hidden dark:block pointer-events-none fixed top-20 -left-32 w-96 h-96 bg-neonCyan/10 rounded-full blur-[120px] z-0"></div>
+        <div class="hidden dark:block pointer-events-none fixed bottom-10 -right-32 w-96 h-96 bg-neonPink/10 rounded-full blur-[120px] z-0"></div>
+
+        <!-- 2. Hero Section -->
+        <section class="relative z-10 min-h-[85vh] flex items-center justify-center bg-gradient-to-br from-slate-100 via-cyan-50/40 to-pink-50/40 dark:from-transparent dark:via-transparent dark:to-transparent px-4 py-20 overflow-visible">
+            <div class="max-w-4xl mx-auto text-center">
+                <span class="inline-block px-4 py-1.5 mb-6 text-sm font-semibold rounded-full bg-cyan-100 text-cyan-800 border border-cyan-300 dark:bg-cyan-950/60 dark:text-neonCyan dark:border-neonCyan/50 dark:shadow-[0_0_15px_rgba(0,243,255,0.3)]">
+                    ⚡ HR Professional & People Strategist
+                </span>
+                
+                <!-- Scatter & Assemble Animated Headline -->
+                <h1 class="text-4xl sm:text-6xl font-bold tracking-tight mb-4 leading-tight">
+                    <span class="scatter-text inline-block" data-scatter-spread="260">สวัสดีครับ, ผม </span>
+                    <span class="scatter-text inline-block text-cyan-600 dark:text-neonCyan neon-text-cyan cursor-pointer" data-scatter-spread="340">เมฆา อ่อนน้อม</span>
+                </h1>
+
+                <p class="text-xl sm:text-2xl font-medium text-slate-600 dark:text-slate-300 mb-6">
+                    <span class="scatter-text inline-block" data-scatter-spread="180">Target: </span>
+                    <span class="scatter-text inline-block text-pink-600 dark:text-neonPink neon-text-pink font-semibold" data-scatter-spread="240">HR Generalist / Talent Acquisition / HRD</span>
+                </p>
+
+                <p class="text-base sm:text-lg text-slate-500 dark:text-slate-300 max-w-2xl mx-auto mb-10">
+                    <span class="scatter-text inline-block" data-scatter-spread="160">"Bridging organizational goals with employee happiness & growth."</span>
+                </p>
+                
+                <!-- CTA Buttons -->
+                <div class="flex flex-wrap justify-center gap-4 mb-10">
+                    <a href="https://drive.google.com/..." target="_blank" class="px-6 py-3 rounded-xl bg-cyan-600 dark:bg-neonCyan text-white dark:text-slate-950 font-semibold hover:opacity-90 shadow-lg dark:shadow-[0_0_20px_rgba(0,243,255,0.6)] transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-file-arrow-down"></i> ดาวน์โหลด Resume
+                    </a>
+                    <a href="#contact" class="px-6 py-3 rounded-xl border-2 border-pink-500 dark:border-neonPink text-pink-600 dark:text-neonPink font-semibold hover:bg-pink-500 hover:text-white dark:hover:bg-neonPink dark:hover:text-slate-950 dark:shadow-[0_0_15px_rgba(255,42,133,0.35)] transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-paper-plane"></i> ติดต่อฉัน
+                    </a>
+                </div>
+
+                <!-- Social Links -->
+                <div class="flex justify-center space-x-6 text-2xl text-slate-600 dark:text-slate-400">
+                    <a href="https://linkedin.com/in/yourprofile" target="_blank" class="hover:text-cyan-600 dark:hover:text-neonCyan dark:hover:drop-shadow-[0_0_10px_rgba(0,243,255,0.9)] transition-all" aria-label="LinkedIn">
+                        <i class="fa-brands fa-linkedin"></i>
+                    </a>
+                    <a href="mailto:your.mekaonnom@gmail.com" class="hover:text-pink-600 dark:hover:text-neonPink dark:hover:drop-shadow-[0_0_10px_rgba(255,42,133,0.9)] transition-all" aria-label="Email">
+                        <i class="fa-solid fa-envelope"></i>
+                    </a>
+                    <a href="tel:0822944102" class="hover:text-purple-600 dark:hover:text-neonPurple dark:hover:drop-shadow-[0_0_10px_rgba(176,38,255,0.9)] transition-all" aria-label="Phone">
+                        <i class="fa-solid fa-phone"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. About Me -->
+        <section id="about" class="relative z-10 py-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 reveal-item">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-3 dark:text-white">
+                    <span class="scatter-on-scroll inline-block" data-scatter-spread="150">About Me</span>
+                </h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-neonCyan to-neonPink mx-auto rounded-full shadow-[0_0_10px_#00f3ff]"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center neon-border-gradient p-8 rounded-2xl border border-slate-200 dark:border-cyan-500/40 dark:neon-box-cyan transition-all">
+                <div>
+                    <h3 class="text-xl font-semibold mb-4 text-cyan-600 dark:text-neonCyan">ประวัติและเป้าหมาย</h3>
+                    <p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+                        <strong class="text-slate-900 dark:text-white">เมฆา</strong> — นักศึกษาสาย HR ชั้นปีที่ 4 ที่มุ่งมั่นในการเรียนรู้กระบวนการสรรหาและพัฒนาบุคลากร มีความสนใจในการนำข้อมูล (People Data) มาใช้ปรับปรุงประสบการณ์ของพนักงานในองค์กร เพื่อสร้างสมดุลระหว่างเป้าหมายธุรกิจและความสุขของพนักงาน
+                    </p>
+                    <div class="flex items-center gap-3 text-slate-700 dark:text-slate-200">
+                        <i class="fa-solid fa-graduation-cap text-pink-600 dark:text-neonPink text-xl"></i>
+                        <span>นักศึกษาชั้นปีที่ 4 สาขาการบริหารทรัพยากรมนุษย์</span>
+                    </div>
+                </div>
+                <div class="space-y-4 border-t md:border-t-0 md:border-l border-slate-200 dark:border-pink-500/30 pt-6 md:pt-0 md:pl-8">
+                    <h3 class="text-xl font-semibold mb-2 text-pink-600 dark:text-neonPink">HR Philosophy</h3>
+                    <blockquote class="italic text-slate-600 dark:text-slate-200 border-l-4 border-pink-500 dark:border-neonPink pl-4">
+                        "พนักงานคือหัวใจสำคัญขององค์กร การพัฒนาศักยภาพและการดูแลความเป็นอยู่ที่ดี คือกุญแจสู่ความสำเร็จที่ยั่งยืน"
+                    </blockquote>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mt-4">
+                        มุ่งมั่นพัฒนาตนเองให้เป็นสะพานเชื่อมโยงระหว่างวิสัยทัศน์ขององค์กรและเส้นทางเติบโตของบุคลากรอย่างมีประสิทธิภาพ
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. HR Skills & Competencies -->
+        <section id="skills" class="relative z-10 py-20 bg-slate-100/70 dark:bg-[#0a0d1c]/80 border-y border-slate-200 dark:border-slate-800/80 reveal-item">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold mb-3">
+                        <span class="scatter-on-scroll inline-block" data-scatter-spread="150">HR Skills & Competencies</span>
+                    </h2>
+                    <div class="w-20 h-1 bg-gradient-to-r from-neonPink to-neonCyan mx-auto rounded-full shadow-[0_0_10px_#ff2a85]"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Hard Skills -->
+                    <div class="bg-white dark:bg-[#0e1326] p-6 rounded-2xl border border-slate-200 dark:border-cyan-500/40 dark:neon-box-cyan transition-all">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="p-3 bg-cyan-100 dark:bg-cyan-950 text-cyan-600 dark:text-neonCyan rounded-xl border dark:border-cyan-500/30">
+                                <i class="fa-solid fa-briefcase text-xl"></i>
+                            </div>
+                            <h3 class="text-lg font-bold dark:text-neonCyan">HR Hard Skills</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1.5 text-sm bg-slate-100 dark:bg-cyan-950/50 dark:text-cyan-200 dark:border dark:border-cyan-500/30 rounded-lg font-medium">Recruitment & Selection</span>
+                            <span class="px-3 py-1.5 text-sm bg-slate-100 dark:bg-cyan-950/50 dark:text-cyan-200 dark:border dark:border-cyan-500/30 rounded-lg font-medium">Onboarding Design</span>
+                            <span class="px-3 py-1.5 text-sm bg-slate-100 dark:bg-cyan-950/50 dark:text-cyan-200 dark:border dark:border-cyan-500/30 rounded-lg font-medium">Employee Engagement</span>
+                            <span class="px-3 py-1.5 text-sm bg-slate-100 dark:bg-cyan-950/50 dark:text-cyan-200 dark:border dark:border-cyan-500/30 rounded-lg font-medium">Basic Labor Law</span>
+                            <span class="px-3 py-1.5 text-sm bg-slate-100 dark:bg-cyan-950/50 dark:text-cyan-200 dark:border dark:border-cyan-500/30 rounded-lg font-medium">HRD</span>
+                        </div>
+                    </div>
+
+                    <!-- Data & Tools -->
+                    <div class="bg-white dark:bg-[#0e1326] p-6 rounded-2xl border border-slate-200 dark:border-pink-500/40 dark:neon-box-pink transition-all">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="p-3 bg-pink-100 dark:bg-pink-950 text-pink-600 dark:text-neonPink rounded-xl border dark:border-pink-500/30">
+                                <i class="fa-solid fa-chart-pie text-xl"></i>
+                            </div>
+                            <h3 class="text-lg font-bold dark:text-neonPink">Data & Software Tools</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1.5 text-sm bg-slate-100 dark:bg-pink-950/50 dark:text-pink-200 dark:border dark:border-pink-500/30 rounded-lg font-medium">MS Excel (Pivot, VLOOKUP)</span>
+                            <span class="px-3 py-1.5 text-sm bg-slate-100 dark:bg-pink-950/50 dark:text-pink-200 dark:border dark:border-pink-500/30 rounded-lg font-medium">Power BI (Basic)</span>
+                            <span class="px-3 py-1.5 text-sm bg-slate-100 dark:bg-pink-950/50 dark:text-pink-200 dark:border dark:border-pink-500/30 rounded-lg font-medium">Google Forms</span>
+                            <span class="px-3 py-1.5 text-sm bg-slate-100 dark:bg-pink-950/50 dark:text-pink-200 dark:border dark:border-pink-500/30 rounded-lg font-medium">Canva</span>
+                            <span class="px-3 py-1.5 text-sm bg-slate-100 dark:bg-pink-950/50 dark:text-pink-200 dark:border dark:border-pink-500/30 rounded-lg font-medium">Notion</span>
+                        </div>
+                    </div>
+
+                    <!-- Soft Skills -->
+                    <div class="bg-white dark:bg-[#0e1326] p-6 rounded-2xl border border-slate-200 dark:border-purple-500/40 dark:shadow-[0_0_15px_rgba(176,38,255,0.2)] dark:hover:shadow-[0_0_25px_rgba(176,38,255,0.45)] transition-all">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="p-3 bg-purple-100 dark:bg-purple-950 text-purple-600 dark:text-neonPurple rounded-xl border dark:border-purple-500/30">
+                                <i class="fa-solid fa-users text-xl"></i>
+                            </div>
+                            <h3 class="text-lg font-bold dark:text-purple-300">Soft Skills</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1.5 text-sm bg-slate-100 dark:bg-purple-950/50 dark:text-purple-200 dark:border dark:border-purple-500/30 rounded-lg font-medium">Active Listening</span>
+                            <span class="px-3 py-1.5 text-sm bg-slate-100 dark:bg-purple-950/50 dark:text-purple-200 dark:border dark:border-purple-500/30 rounded-lg font-medium">Empathy</span>
+                            <span class="px-3 py-1.5 text-sm bg-slate-100 dark:bg-purple-950/50 dark:text-purple-200 dark:border dark:border-purple-500/30 rounded-lg font-medium">Communication</span>
+                            <span class="px-3 py-1.5 text-sm bg-slate-100 dark:bg-purple-950/50 dark:text-purple-200 dark:border dark:border-purple-500/30 rounded-lg font-medium">Team Facilitation</span>
+                            <span class="px-3 py-1.5 text-sm bg-slate-100 dark:bg-purple-950/50 dark:text-purple-200 dark:border dark:border-purple-500/30 rounded-lg font-medium">Conflict Resolution</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Projects & Case Studies -->
+        <section id="projects" class="relative z-10 py-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 reveal-item">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-3">
+                    <span class="scatter-on-scroll inline-block" data-scatter-spread="150">Projects & Case Studies</span>
+                </h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-neonCyan to-neonPink mx-auto rounded-full shadow-[0_0_10px_#00f3ff]"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Project 1 -->
+                <div class="bg-white dark:bg-[#0e1326] p-6 rounded-2xl border border-slate-200 dark:border-cyan-500/40 dark:neon-box-cyan flex flex-col justify-between transition-all">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-semibold px-3 py-1 bg-cyan-100 text-cyan-700 dark:bg-cyan-950 dark:text-neonCyan dark:border dark:border-cyan-500/40 rounded-full">HRD Project</span>
+                            <i class="fa-solid fa-folder-open text-cyan-600 dark:text-neonCyan text-lg"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 dark:text-white">Onboarding & Training Program Design</h3>
+                        <p class="text-slate-600 dark:text-slate-300 text-sm mb-6 leading-relaxed">
+                            ออกแบบหลักสูตรการปฐมนิเทศพนักงานใหม่ 3 วัน พร้อมระบบติดตามผล 90 วัน ในรายวิชา HRD เพื่อให้พนักงานปรับตัวเข้ากับวัฒนธรรมองค์กรได้อย่างรวดเร็ว
+                        </p>
+                    </div>
+                    <div>
+                        <div class="text-xs font-semibold text-slate-400 dark:text-cyan-400/80 mb-2">TOOLS USED:</div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs px-2.5 py-1 bg-slate-100 dark:bg-slate-800 dark:text-cyan-200 dark:border dark:border-cyan-500/30 rounded font-medium">Instructional Design</span>
+                            <span class="text-xs px-2.5 py-1 bg-slate-100 dark:bg-slate-800 dark:text-cyan-200 dark:border dark:border-cyan-500/30 rounded font-medium">Canva</span>
+                            <span class="text-xs px-2.5 py-1 bg-slate-100 dark:bg-slate-800 dark:text-cyan-200 dark:border dark:border-cyan-500/30 rounded font-medium">MS Word</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="bg-white dark:bg-[#0e1326] p-6 rounded-2xl border border-slate-200 dark:border-pink-500/40 dark:neon-box-pink flex flex-col justify-between transition-all">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-semibold px-3 py-1 bg-pink-100 text-pink-700 dark:bg-pink-950 dark:text-neonPink dark:border dark:border-pink-500/40 rounded-full">Analytics & Survey</span>
+                            <i class="fa-solid fa-chart-column text-pink-600 dark:text-neonPink text-lg"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 dark:text-white">Employee Engagement & Satisfaction Survey</h3>
+                        <p class="text-slate-600 dark:text-slate-300 text-sm mb-6 leading-relaxed">
+                            ออกแบบแบบสำรวจและวิเคราะห์ข้อมูลความพึงพอใจของนักศึกษา 150 คน เพื่อนำเสนอแนวทางการจัดกิจกรรมชมรมและการสร้างบรรยากาศที่ดี
+                        </p>
+                    </div>
+                    <div>
+                        <div class="text-xs font-semibold text-slate-400 dark:text-pink-400/80 mb-2">TOOLS USED:</div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs px-2.5 py-1 bg-slate-100 dark:bg-slate-800 dark:text-pink-200 dark:border dark:border-pink-500/30 rounded font-medium">Google Forms</span>
+                            <span class="text-xs px-2.5 py-1 bg-slate-100 dark:bg-slate-800 dark:text-pink-200 dark:border dark:border-pink-500/30 rounded font-medium">MS Excel</span>
+                            <span class="text-xs px-2.5 py-1 bg-slate-100 dark:bg-slate-800 dark:text-pink-200 dark:border dark:border-pink-500/30 rounded font-medium">Data Visualization</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Activities & Experience -->
+        <section id="experience" class="relative z-10 py-20 bg-slate-100/70 dark:bg-[#0a0d1c]/80 border-y border-slate-200 dark:border-slate-800/80 reveal-item">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold mb-3">
+                        <span class="scatter-on-scroll inline-block" data-scatter-spread="150">Activities & Experience</span>
+                    </h2>
+                    <div class="w-20 h-1 bg-gradient-to-r from-neonPink to-neonCyan mx-auto rounded-full shadow-[0_0_10px_#ff2a85]"></div>
+                </div>
+
+                <div class="relative border-l-2 border-cyan-500/50 dark:border-neonCyan/60 ml-4 sm:ml-6 space-y-10">
+                    <!-- Experience 1 -->
+                    <div class="relative pl-6 sm:pl-8">
+                        <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-neonPink shadow-[0_0_12px_#ff2a85] border-2 border-white dark:border-[#0a0d1c]"></div>
+                        <div class="bg-white dark:bg-[#0e1326] p-6 rounded-2xl border border-slate-200 dark:border-pink-500/35 dark:neon-box-pink transition-all">
+                            <span class="text-xs font-semibold text-pink-600 dark:text-neonPink mb-1 block">2567</span>
+                            <h3 class="text-lg font-bold mb-1">หัวหน้าฝ่ายสวัสดิการและดูแลทีมงาน</h3>
+                            <h4 class="text-sm font-medium text-slate-500 dark:text-slate-400 mb-3">ค่ายอาสามหาวิทยาลัย</h4>
+                            <p class="text-slate-600 dark:text-slate-300 text-sm">
+                                ดูแลเรื่องการจัดสรรอาหาร สวัสดิการ และประสานงานทีมงานค่ายกว่า 50 คน พร้อมจัดการปัญหาเฉพาะหน้าและสร้างขวัญกำลังใจให้ทีมงานตลอดโครงการ
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Experience 2 -->
+                    <div class="relative pl-6 sm:pl-8">
+                        <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-neonCyan shadow-[0_0_12px_#00f3ff] border-2 border-white dark:border-[#0a0d1c]"></div>
+                        <div class="bg-white dark:bg-[#0e1326] p-6 rounded-2xl border border-slate-200 dark:border-cyan-500/35 dark:neon-box-cyan transition-all">
+                            <span class="text-xs font-semibold text-cyan-600 dark:text-neonCyan mb-1 block">2566</span>
+                            <h3 class="text-lg font-bold mb-1">ผู้ดำเนินรายการและฝ่ายจัดกิจกรรม</h3>
+                            <h4 class="text-sm font-medium text-slate-500 dark:text-slate-400 mb-3">งานรับน้องสาขา</h4>
+                            <p class="text-slate-600 dark:text-slate-300 text-sm">
+                                ออกแบบกิจกรรม Ice-breaking และ Team Building เพื่อสร้างความสัมพันธ์อันดีในหมู่นักศึกษาใหม่ ส่งเสริมการทำงานร่วมกันเป็นทีม (Teamwork)
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. Certifications -->
+        <section id="certifications" class="relative z-10 py-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 reveal-item">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-3">
+                    <span class="scatter-on-scroll inline-block text-cyan-600 dark:text-neonCyan neon-text-cyan" data-scatter-spread="150">Certifications</span>
+                </h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-neonCyan to-neonPink mx-auto rounded-full shadow-[0_0_10px_#00f3ff]"></div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <!-- Cert 1 -->
+                <div class="bg-white dark:bg-[#0e1326] p-6 rounded-2xl border border-slate-200 dark:border-cyan-500/40 dark:neon-box-cyan flex items-start gap-4 transition-all">
+                    <div class="p-3 bg-cyan-100 dark:bg-cyan-950 text-cyan-600 dark:text-neonCyan rounded-xl shrink-0 border dark:border-cyan-500/30">
+                        <i class="fa-solid fa-award text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold mb-1">Foundations of Everyday Leadership</h3>
+                        <p class="text-sm text-slate-500 dark:text-cyan-300/70">Coursera</p>
+                    </div>
+                </div>
+
+                <!-- Cert 2 -->
+                <div class="bg-white dark:bg-[#0e1326] p-6 rounded-2xl border border-slate-200 dark:border-pink-500/40 dark:neon-box-pink flex items-start gap-4 transition-all">
+                    <div class="p-3 bg-pink-100 dark:bg-pink-950 text-pink-600 dark:text-neonPink rounded-xl shrink-0 border dark:border-pink-500/30">
+                        <i class="fa-solid fa-award text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold mb-1">HR Analytics & People Metrics</h3>
+                        <p class="text-sm text-slate-500 dark:text-pink-300/70">Chula MOOC</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. Contact & Footer -->
+        <section id="contact" class="relative z-10 py-20 bg-slate-100/70 dark:bg-[#0a0d1c]/80 border-t border-slate-200 dark:border-cyan-500/30 reveal-item">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold mb-3">
+                        <span class="scatter-on-scroll inline-block" data-scatter-spread="150">Get In Touch</span>
+                    </h2>
+                    <div class="w-20 h-1 bg-gradient-to-r from-neonPink to-neonCyan mx-auto rounded-full shadow-[0_0_10px_#ff2a85]"></div>
+                    <p class="text-slate-600 dark:text-slate-300 mt-4">สนใจร่วมงานหรือพูดคุยแลกเปลี่ยนกับ <span class="font-semibold dark:text-neonCyan">เมฆา</span> สามารถติดต่อได้ผ่านช่องทางด้านล่างนี้ครับ</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Info cards -->
+                    <div class="space-y-4">
+                        <a href="mailto:your.mekaonnom@gmail.com" class="flex items-center gap-4 p-4 bg-white dark:bg-[#0e1326] rounded-xl border border-slate-200 dark:border-cyan-500/35 hover:border-cyan-500 dark:hover:border-neonCyan dark:neon-box-cyan transition-all">
+                            <div class="p-3 bg-cyan-100 dark:bg-cyan-950 text-cyan-600 dark:text-neonCyan rounded-lg">
+                                <i class="fa-solid fa-envelope text-lg"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-slate-400 font-medium">Email</div>
+                                <div class="font-medium text-sm sm:text-base">your.mekaonnom@gmail.com</div>
+                            </div>
+                        </a>
+
+                        <a href="tel:0822944102" class="flex items-center gap-4 p-4 bg-white dark:bg-[#0e1326] rounded-xl border border-slate-200 dark:border-pink-500/35 hover:border-pink-500 dark:hover:border-neonPink dark:neon-box-pink transition-all">
+                            <div class="p-3 bg-pink-100 dark:bg-pink-950 text-pink-600 dark:text-neonPink rounded-lg">
+                                <i class="fa-solid fa-phone text-lg"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-slate-400 font-medium">Phone</div>
+                                <div class="font-medium text-sm sm:text-base">0822-944-102</div>
+                            </div>
+                        </a>
+
+                        <a href="https://linkedin.com/in/yourprofile" target="_blank" class="flex items-center gap-4 p-4 bg-white dark:bg-[#0e1326] rounded-xl border border-slate-200 dark:border-purple-500/35 hover:border-purple-500 dark:hover:border-neonPurple transition-all">
+                            <div class="p-3 bg-purple-100 dark:bg-purple-950 text-purple-600 dark:text-neonPurple rounded-lg">
+                                <i class="fa-brands fa-linkedin text-lg"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-slate-400 font-medium">LinkedIn</div>
+                                <div class="font-medium text-sm sm:text-base">linkedin.com/in/yourprofile</div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Contact Form UI -->
+                    <form onSubmit="event.preventDefault(); alert('ขอบคุณสำหรับการติดต่อคุณเมฆาครับ ระบบส่งข้อความจำลองทำงานเรียบร้อยแล้ว');" class="bg-white dark:bg-[#0e1326] p-6 rounded-2xl border border-slate-200 dark:border-pink-500/35 dark:neon-box-pink space-y-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-500 dark:text-cyan-300/80 mb-1">ชื่อของคุณ</label>
+                            <input type="text" required class="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-transparent text-sm focus:outline-none focus:border-cyan-500 dark:focus:border-neonCyan transition-colors" placeholder="ชื่อ - นามสกุล">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-500 dark:text-cyan-300/80 mb-1">อีเมลของคุณ</label>
+                            <input type="email" required class="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-transparent text-sm focus:outline-none focus:border-cyan-500 dark:focus:border-neonCyan transition-colors" placeholder="email@example.com">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-500 dark:text-cyan-300/80 mb-1">ข้อความ</label>
+                            <textarea rows="4" required class="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-transparent text-sm focus:outline-none focus:border-pink-500 dark:focus:border-neonPink transition-colors resize-none" placeholder="พิมพ์ข้อความของคุณถึงเมฆา..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-cyan-600 to-pink-600 dark:from-neonCyan dark:to-neonPink text-white dark:text-slate-950 font-bold hover:opacity-90 transition-all shadow-md dark:shadow-[0_0_20px_rgba(255,42,133,0.45)]">
+                            ส่งข้อความ
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative z-10 py-6 border-t border-slate-200 dark:border-slate-800 text-center text-sm text-slate-500 dark:text-slate-400">
+        <p>&copy; 2026 <span class="dark:text-neonCyan font-medium">เมฆา อ่อนน้อม (Meka Onnom)</span>. All rights reserved. Built with Tailwind CSS.</p>
+    </footer>
+
+    <!-- JavaScript for Interactivity (Scatter Text Effect, Scroll Reveal, Dark Mode & Mobile Menu) -->
+    <script>
+        // 1. Scatter & Assemble Text Effect (รองรับสระและวรรณยุกต์ภาษาไทยไม่ให้แยกจากพยัญชนะ)
+        function splitIntoGraphemes(text) {
+            if (typeof Intl !== 'undefined' && Intl.Segmenter) {
+                const segmenter = new Intl.Segmenter('th', { granularity: 'grapheme' });
+                return Array.from(segmenter.segment(text), s => s.segment);
+            }
+            return Array.from(text);
+        }
+
+        function prepareScatterElement(el) {
+            if (!el.dataset.originalText) {
+                el.dataset.originalText = el.textContent;
+            }
+            const text = el.dataset.originalText;
+            const spread = parseInt(el.dataset.scatterSpread || '220', 10);
+            const graphemes = splitIntoGraphemes(text);
+
+            el.innerHTML = '';
+            el.classList.add('scatter-container');
+            el.classList.remove('ready');
+
+            graphemes.forEach((char, index) => {
+                const span = document.createElement('span');
+                span.className = 'scatter-char';
+                if (char === ' ') {
+                    span.innerHTML = '&nbsp;';
+                } else {
+                    span.textContent = char;
+                }
+
+                // สุ่มตำแหน่งกระจายรอบทิศทาง หมุน และเบลอ
+                const angle = Math.random() * Math.PI * 2;
+                const distance = (0.45 + Math.random() * 0.75) * spread;
+                const tx = Math.cos(angle) * distance;
+                const ty = Math.sin(angle) * distance;
+                const rot = (Math.random() - 0.5) * 140;
+                const scale = 0.4 + Math.random() * 0.9;
+
+                span.style.transform = `translate3d(${tx}px, ${ty}px, 0) rotate(${rot}deg) scale(${scale})`;
+                span.style.opacity = '0';
+                span.style.filter = 'blur(8px)';
+                span.style.transitionDelay = `${index * 22}ms`;
+
+                el.appendChild(span);
+            });
+        }
+
+        function assembleScatterElement(el, delay = 120) {
+            setTimeout(() => {
+                const chars = el.querySelectorAll('.scatter-char');
+                chars.forEach(span => {
+                    span.classList.add('assembled');
+                });
+                setTimeout(() => {
+                    el.classList.add('ready');
+                }, 1300);
+            }, delay);
+        }
+
+        // Initialize Hero Scatter Elements
+        const heroScatterElements = document.querySelectorAll('.scatter-text');
+        function runHeroScatter() {
+            heroScatterElements.forEach((el, idx) => {
+                prepareScatterElement(el);
+                assembleScatterElement(el, 150 + idx * 180);
+            });
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            runHeroScatter();
+
+            // Initialize Section Heading Scatter Elements on Scroll
+            const scrollScatterElements = document.querySelectorAll('.scatter-on-scroll');
+            scrollScatterElements.forEach(el => prepareScatterElement(el));
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        const scatterTarget = entry.target.querySelector('.scatter-on-scroll');
+                        if (scatterTarget && !scatterTarget.dataset.animated) {
+                            scatterTarget.dataset.animated = 'true';
+                            assembleScatterElement(scatterTarget, 100);
+                        }
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            document.querySelectorAll('.reveal-item').forEach(section => {
+                observer.observe(section);
+            });
+        });
+
+        // Replay Button Click
+        document.getElementById('replay-scatter').addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            runHeroScatter();
+        });
+
+        // 2. Dark Mode Toggle Logic
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const htmlElement = document.documentElement;
+
+        if (localStorage.getItem('theme') === 'light') {
+            htmlElement.classList.remove('dark');
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
+        } else {
+            htmlElement.classList.add('dark');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            if (htmlElement.classList.contains('dark')) {
+                htmlElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            } else {
+                htmlElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            }
+        });
+
+        // 3. Mobile Menu Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
